@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: "images/uploads"
+public_folder: "images/uploads"
+locale: "en"
+collections:
+  - name: events
+    label: "Upcoming events"
+    label_singular: "event"
+    folder: "content/events"
+    create: true
+    extension: "md"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{date}} · {{title}}"
+    fields:
+      - {label: "Event name", name: title, widget: string}
+      - {label: "Start date", name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD"}
+      - {label: "End date (leave empty for one-day events)", name: end_date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", required: false}
+      - {label: "Place", name: location, widget: string, required: false}
+      - {label: "Registration link (optional)", name: link, widget: string, required: false}
+      - {label: "Details", name: body, widget: markdown, required: false, buttons: [bold, italic, link]}
+  - name: posts
+    label: "Blog posts"
+    label_singular: "post"
+    folder: "content/posts"
+    create: true
+    extension: "md"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{date}} · {{title}}"
+    fields:
+      - {label: "Title", name: title, widget: string}
+      - {label: "Date", name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD"}
+      - {label: "Photo (optional)", name: image, widget: image, required: false}
+      - {label: "Short summary", name: summary, widget: text, required: false}
+      - {label: "Full story", name: body, widget: markdown, required: false, buttons: [bold, italic, link]}
